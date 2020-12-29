@@ -6,21 +6,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.boxscore.mysqlapi.models.Player;
-import com.boxscore.mysqlapi.services.PlayerService;
+import com.boxscore.mysqlapi.models.Round;
+import com.boxscore.mysqlapi.services.RoundService;
 
 @RestController
-@RequestMapping("/api/player")
-public class PlayerController {
+@RequestMapping("/api/round")
+public class RoundController {
 	
-    @Autowired 
-    private PlayerService playerService;
-
+	@Autowired
+	RoundService roundService;
+	
     @GetMapping("/{id}")
-    public String findById(@PathVariable int id) {
+    public Round findById(@PathVariable int id) {
     	//Player player =  playerService.getPlayer(id).get();
-        return playerService.getPlayer(id).get().getPlayernamefull();
+        return roundService.getRound(id).get();
     }
-
 
 }
