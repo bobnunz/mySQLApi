@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.boxscore.mysqlapi.dtos.PlayerResponse;
 import com.boxscore.mysqlapi.models.Player;
 import com.boxscore.mysqlapi.services.PlayerService;
 
@@ -17,9 +18,9 @@ public class PlayerController {
     private PlayerService playerService;
 
     @GetMapping("/{id}")
-    public String findById(@PathVariable int id) {
-    	//Player player =  playerService.getPlayer(id).get();
-        return playerService.getPlayer(id).get().getPlayernamefull();
+    public PlayerResponse findById(@PathVariable int id) {
+    	Player player =  playerService.getPlayer(id).get();
+        return new PlayerResponse(player);
     }
 
 
